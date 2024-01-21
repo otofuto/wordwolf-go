@@ -96,6 +96,7 @@
 		</form>
 		<div style="text-align: right;"><a href="/manage/">管理画面へ</a></div>
 		<script src="/st/js/scripts.js?{{ .Query }}"></script>
+		<script src="/st/js/master.js?{{ .Query }}"></script>
 		<script>
 			$('.textarea').wysihtml5({
 				"emphasis": true,
@@ -117,10 +118,10 @@
 				post('/r/blog', data).then(res => {
 					if (res.result_type == 0) {
 						alert("ブログを作成しました。");
-						location = '/manage/categorylist';
-					} else if (result_type == 1) {
+						location = '/manage/bloglist';
+					} else if (res.result_type == 1) {
 						alert('更新しました。');
-						location = '/manage/categorylist';
+						location = '/manage/bloglist';
 					} else {
 						alert(res.message);
 					}

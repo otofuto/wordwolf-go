@@ -51,7 +51,7 @@ func All() ([]PageHtml, error) {
 		return ret, err
 	}
 	defer rows.Close()
-	if rows.Next() {
+	for rows.Next() {
 		var ph PageHtml
 		err = rows.Scan(&ph.Id, &ph.PageName, &ph.PagePath, &ph.Left, &ph.Right, &ph.Top, &ph.Bottom)
 		if err != nil {

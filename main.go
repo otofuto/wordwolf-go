@@ -469,7 +469,7 @@ func BlogHandle(w http.ResponseWriter, r *http.Request) {
 			UserAgent: r.UserAgent(),
 			Host:      os.Getenv("HOST"),
 			Query:     "20240117",
-			Len: func(list []interface{}) int {
+			Len: func(list []blog.Blog) int {
 				return len(list)
 			},
 		}
@@ -1335,7 +1335,7 @@ func ApiHandle(w http.ResponseWriter, r *http.Request) {
 						ApiResponse(w, 500, -1, err.Error())
 						return
 					}
-					ApiResponse(w, 200, 0, "")
+					ApiResponse(w, 200, 1, "")
 				} else {
 					//登録
 					err := blog.Blog{

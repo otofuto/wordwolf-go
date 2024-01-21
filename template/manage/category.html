@@ -59,10 +59,10 @@
 				});
 			}
 		</script>
-		{% if mode == "編集" %}
+		{{ if eq .Mode "編集" }}
 		<script>
 			document.getElementsByName("id")[0].value = new URL(location).searchParams.get('edit');
 		</script>
-		{% endif %}
+		{{ end }}
 	</body>
 </html>

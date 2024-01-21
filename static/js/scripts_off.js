@@ -167,7 +167,7 @@ function nextMemberOdai(){
 
 function startCheck(){
 	document.getElementById("msg2").innerHTML = "確認が終わりました。";
-	document.getElementById("next").setAttribute("onclick", "location = 'play';");
+	document.getElementById("next").setAttribute("onclick", "location = 'offplay';");
 	document.getElementById("next").innerHTML = "ゲームを開始する";
 }
 

@@ -216,15 +216,15 @@
 			<main id="content">
 				<form method="put" name="fm" onsubmit="return false;">
 					<div id="pagelist">
-						{% for ph in pages %}
+						{{ range .Pages }}
 						<article>
 							<label>
-								<input type="checkbox" name="chk" value="{{ ph.page_path }}">
-								<span>{{ ph.page_name }}</span>
+								<input type="checkbox" name="chk" value="{{ .PagePath }}">
+								<span>{{ .PageName }}</span>
 							</label>
-							<button onclick="edit('{{ ph.page_path }}')">編集</button>
+							<button onclick="edit('{{ .PagePath }}')">編集</button>
 						</article>
-						{% endfor %}
+						{{ end }}
 					</div>
 					<div>
 						<button class="button" onclick="suball()">一括で設定</button>
@@ -233,7 +233,7 @@
 			</main>
 			<main class="ad-area"></main>
 		</div>
-		<script src="{% static 'js/scripts.js' %}?{{ query }}"></script>
+		<script src="/st/js/scripts.js?{{ .Query }}"></script>
 		<script>
 			onload = () => {};
 			window.onresize = () => {};

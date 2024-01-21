@@ -42,7 +42,7 @@ func Page(display_max_count, page int) []Blog {
 	ret := make([]Blog, 0)
 	db := database.Connect()
 	defer db.Close()
-	q := "select id, `image`, `title`, `content`, created_at from blog order by id desc offset " + strconv.Itoa(page*display_max_count) + " limit " + strconv.Itoa(display_max_count)
+	q := "select id, `image`, `title`, `content`, created_at from blog order by id desc limit " + strconv.Itoa(display_max_count) + " offset " + strconv.Itoa(page*display_max_count)
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Println("blog.Page db.Query")
@@ -58,6 +58,7 @@ func Page(display_max_count, page int) []Blog {
 			log.Println(err)
 			return ret
 		}
+		b.CreatedAt = b.CreatedAt[:10]
 		ret = append(ret, b)
 	}
 	return ret
@@ -82,6 +83,7 @@ func Get(id int) Blog {
 			log.Println(err)
 			return b
 		}
+		b.CreatedAt = b.CreatedAt[:10]
 	}
 	return b
 }
@@ -104,6 +106,7 @@ func All() ([]Blog, error) {
 			log.Println("blog.Page rows.Scan")
 			return ret, err
 		}
+		b.CreatedAt = b.CreatedAt[:10]
 		ret = append(ret, b)
 	}
 	return ret, nil

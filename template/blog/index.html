@@ -157,7 +157,7 @@
 			<main id="content">
 				<h1>ブログ</h1>
 				<div id="bloglist">
-					{{ if eq (call len .BlogList) 0 }}
+					{{ if eq (call .Len .BlogList) 0 }}
 					<p>まだブログが投稿されていません。</p>
 					{{ end }}
 					{{ range .BlogList }}
