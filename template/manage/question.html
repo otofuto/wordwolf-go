@@ -28,7 +28,7 @@
 				<h3>カテゴリ選択</h3>
 			</div>
 			<select name="category">
-				{{ raneg .CategoryList }}
+				{{ range .CategoryList }}
 				<option value="{{ .Id }}">{{ .Name }}</option>
 				{{ end }}
 			</select>

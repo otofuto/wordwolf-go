@@ -44,7 +44,7 @@ func List() ([]Question, error) {
 	defer db.Close()
 	ret := make([]Question, 0)
 
-	q := "select question.id, category, category.`name`, val1, val2 from question left outer join category on question.id = category.id order by question.id"
+	q := "select question.id, category, category.`name`, val1, val2 from question left outer join category on question.category = category.id order by question.id"
 	rows, err := db.Query(q)
 	if err != nil {
 		log.Println("question.List db.Query")
