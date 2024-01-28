@@ -149,6 +149,7 @@ func IndexHandle(w http.ResponseWriter, r *http.Request) {
 		if !util.CheckRequest(w, r) {
 			return
 		}
+		log.Println("TLS: ", r.TLS)
 		var err error
 		if r.URL.Path == "/" {
 			filename = "index"
