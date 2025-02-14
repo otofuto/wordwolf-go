@@ -55,8 +55,10 @@ h2 {
 
 .ad-link {
 	display: inline-block;
-	font-size: 18px;
+	font-size: 20px;
 	text-decoration: none;
+	background-color: cornflowerblue;
+	color: white;
 }
 
 #page-header {
