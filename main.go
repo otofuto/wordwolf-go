@@ -133,7 +133,7 @@ func IndexHandle(w http.ResponseWriter, r *http.Request) {
 		context := TempContext{
 			UserAgent: r.UserAgent(),
 			Host:      os.Getenv("HOST"),
-			Query:     "20240117",
+			Query:     "20250214",
 		}
 		mode := ""
 		hash := ""
@@ -332,7 +332,7 @@ func ShareHandle(w http.ResponseWriter, r *http.Request) {
 		context := TempContext{
 			UserAgent: r.UserAgent(),
 			Host:      os.Getenv("HOST"),
-			Query:     "20240117",
+			Query:     "20250214",
 		}
 		if !util.CheckRequest(w, r) {
 			return
@@ -468,7 +468,7 @@ func BlogHandle(w http.ResponseWriter, r *http.Request) {
 		context := TempContext{
 			UserAgent: r.UserAgent(),
 			Host:      os.Getenv("HOST"),
-			Query:     "20240117",
+			Query:     "20250214",
 			Len: func(list []blog.Blog) int {
 				return len(list)
 			},
@@ -516,7 +516,7 @@ func ManageHandle(w http.ResponseWriter, r *http.Request) {
 		context := TempContext{
 			UserAgent: r.UserAgent(),
 			Host:      os.Getenv("HOST"),
-			Query:     "20240117",
+			Query:     "20250214",
 			Login:     account.CheckLogin(r),
 			Len: func(list []interface{}) int {
 				return len(list)

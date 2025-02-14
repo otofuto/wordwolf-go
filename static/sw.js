@@ -1,4 +1,4 @@
-var CACHE_NAME = "wordwolf-tokyo-20240120";
+var CACHE_NAME = "wordwolf-tokyo-20250214";
 var urlsToCache = [
 	"/",
     "/howto",
