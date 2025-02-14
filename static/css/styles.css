@@ -26,6 +26,7 @@ h2 {
 }
 
 .button {
+	display: inline-block;
 	border-radius: 10px;
 	background-color: #FCE5CD;
 	color: #0e1539;
@@ -50,6 +51,12 @@ h2 {
 	width: 68%;
 	padding: 8px 0;
 	margin: 22px auto;
+}
+
+.ad-link {
+	display: inline-block;
+	font-size: 18px;
+	text-decoration: none;
 }
 
 #page-header {
