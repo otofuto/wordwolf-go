@@ -1513,7 +1513,7 @@ func OutHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func SwjsHandle(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Content-Type", "text/plain; charset=utf8")
+	w.Header().Add("Content-Type", "application/javascript; charset=utf8")
 	b, err := ioutil.ReadFile("static/sw.js")
 	if err != nil {
 		w.Header().Set("Content-Type", "application/javascript; charset=utf8")
