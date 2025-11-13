@@ -175,7 +175,7 @@
 				}).then((obj) => {
 					if(obj.result_type == 0){
 						voted = obj.voted;
-						if(voted >= {{ .PlayerCount }}){
+						if(voted >= '{{ .PlayerCount }}' - 0){
 							endCount();
 						} else if(voted == 0){
 							alert("エラー\n\nプレイヤー情報を失いました。\n続行できません。");
@@ -195,7 +195,7 @@
 				if (typeof data == 'string') data = JSON.parse(data);
 				if (typeof data.id != 'undefined') {
 					voted++;
-					if (voted >= {{ .PlayerCount }}) {
+					if (voted >= '{{ .PlayerCount }}' - 0) {
 						endCount();
 					}
 				} else if(typeof data.point != 'undefined') {

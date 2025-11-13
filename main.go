@@ -862,9 +862,9 @@ func ApiHandle(w http.ResponseWriter, r *http.Request) {
 			}
 			return
 		} else if mode == "counting" {
+			db := database.Connect()
+			defer db.Close()
 			if util.Isset(r, []string{"count"}) {
-				db := database.Connect()
-				defer db.Close()
 				voted, err := member.Voted(hash, db)
 				if err != nil {
 					log.Println("ApiHandle post counting member.Voted")
@@ -881,8 +881,6 @@ func ApiHandle(w http.ResponseWriter, r *http.Request) {
 				})
 				fmt.Fprint(w, string(bts))
 			} else if util.Isset(r, []string{"memid", "myid"}) {
-				db := database.Connect()
-				defer db.Close()
 				ck, err := r.Cookie("ww_voted")
 				if err == nil {
 					if ck.Value == "true" {
@@ -1513,14 +1511,14 @@ func OutHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func SwjsHandle(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Content-Type", "application/javascript; charset=utf8")
-	b, err := ioutil.ReadFile("static/sw.js")
+	w.Header().Add("Content-Type", "application/javascript;charset=utf8")
+	b, err := os.ReadFile("static/sw.js")
 	if err != nil {
-		w.Header().Set("Content-Type", "application/javascript; charset=utf8")
+		w.Header().Set("Content-Type", "text/html;charset=utf8")
 		Page404(w)
 		return
 	}
-	fmt.Fprintf(w, string(b))
+	fmt.Fprint(w, string(b))
 }
 
 func RobotsHandle(w http.ResponseWriter, r *http.Request) {
