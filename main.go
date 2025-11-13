@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
@@ -1476,18 +1475,18 @@ func FaviconHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func Page404(w http.ResponseWriter) {
-	b, err := ioutil.ReadFile("template/404.html")
+	b, err := os.ReadFile("template/404.html")
 	if err != nil {
 		log.Print(err)
 		b = []byte("404 Page Not Found")
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(404)
-	fmt.Fprintf(w, string(b))
+	w.Write(b)
 }
 
 func Page500(w http.ResponseWriter, msg string) {
-	b, err := ioutil.ReadFile("template/500.html")
+	b, err := os.ReadFile("template/500.html")
 	if err != nil {
 		log.Print(err)
 		b = []byte("500 Page Not Found")
@@ -1496,18 +1495,18 @@ func Page500(w http.ResponseWriter, msg string) {
 	w.WriteHeader(500)
 	str := string(b)
 	str = strings.Replace(str, "[message]", msg, -1)
-	fmt.Fprintf(w, str)
+	fmt.Fprint(w, str)
 }
 
 func OutHandle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "text/plain; charset=utf8")
-	b, err := ioutil.ReadFile("nohup.out")
+	b, err := os.ReadFile("nohup.out")
 	if err != nil {
 		w.Header().Set("Content-Type", "text/html; charset=utf8")
 		Page404(w)
 		return
 	}
-	fmt.Fprintf(w, string(b))
+	w.Write(b)
 }
 
 func SwjsHandle(w http.ResponseWriter, r *http.Request) {
@@ -1518,27 +1517,27 @@ func SwjsHandle(w http.ResponseWriter, r *http.Request) {
 		Page404(w)
 		return
 	}
-	fmt.Fprint(w, string(b))
+	w.Write(b)
 }
 
 func RobotsHandle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "text/plain; charset=utf8")
-	b, err := ioutil.ReadFile("static/robots.txt")
+	b, err := os.ReadFile("static/robots.txt")
 	if err != nil {
 		w.Header().Set("Content-Type", "text/plain; charset=utf8")
 		Page404(w)
 		return
 	}
-	fmt.Fprintf(w, string(b))
+	w.Write(b)
 }
 
 func SiteMapHandle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "text/plain; charset=utf8")
-	b, err := ioutil.ReadFile("static/sitemap.xml")
+	b, err := os.ReadFile("static/sitemap.xml")
 	if err != nil {
 		w.Header().Set("Content-Type", "text/xml; charset=utf8")
 		Page404(w)
 		return
 	}
-	fmt.Fprintf(w, string(b))
+	w.Write(b)
 }
