@@ -53,6 +53,10 @@ h2 {
 	margin: 22px auto;
 }
 
+.button:active {
+	background-color: #e3c8ab;
+}
+
 .ad-link {
 	display: inline-block;
 	font-size: 20px;
